@@ -95,15 +95,15 @@ public class Enemy {
             }
         } else if (AI.equals("spiritType")) {
             dmgTaken = 0;
-            if (pickAttack < 0.4) {
+            if (pickAttack < 0.2) {
                 dmgTaken = attack - playerDef;
                 System.out.println(name + " attacks\nplayer takes " + dmgTaken + " damage");
-            } else if (pickAttack < 0.5 && atkBuff == 0) {
+            } else if (pickAttack < 0.4 && atkBuff == 0) {
                 attack += 2;
                 atkBuff = 2;
                 atkBuffTimer = 3;
                 System.out.println(name + " boosts its attack damage");
-            } else if (pickAttack < 0.5) {
+            } else if (pickAttack < 0.4) {
                 atkBuffTimer = 3;
                 System.out.println(name + " lengthens its attack boost");
             } else if (pickAttack < 0.6 && defBuff == 0) {
@@ -127,7 +127,16 @@ public class Enemy {
                 System.out.println(name + " waits");
             }
         } else if (AI.equals("dragonType")) {
-            if (pickAttack < 0.7) {
+            if (pickAttack < 0.2 && atkBuff == 0) {
+                dmgTaken = 0;
+                attack += 5;
+                atkBuff = 5;
+                atkBuffTimer = 1;
+                speed += 3;
+                spdBuff = 3;
+                spdBuffTimer = 1;
+                System.out.println(name + " prepares to attack");
+            } else if (pickAttack < 0.7 ) {
                 dmgTaken = attack - playerDef;
                 System.out.println(name + " attacks\nplayer takes " + dmgTaken + " damage");
             } else if (pickAttack < 0.95) {
