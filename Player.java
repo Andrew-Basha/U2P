@@ -1,9 +1,9 @@
 import java.util.Scanner;
 public class Player {
     private int currentHP;
-    final private int maxHP;
+    private int maxHP;
     private int currentMP;
-    final private int maxMP;
+    private int maxMP;
     private int attack;
     private int defense;
     private int speed;
@@ -66,5 +66,16 @@ public class Player {
         }
         return dmgTaken;
     }
+    public void levelUp(int HPIncrease, int MPIncrease, int atkIncrease, int defIncrease, int spdIncrease){
+        System.out.println("player levels up\nplayer gains " + HPIncrease + " HP\nplayer gains " + MPIncrease  + " MP\n");
+        maxHP += HPIncrease;
+        maxMP += MPIncrease;
+        currentHP = maxHP;
+        currentMP = maxMP;
+        System.out.println("player gains " + atkIncrease + " Attack, " + defIncrease + " Defense, and " + spdIncrease + "Speed");
+        attack += atkIncrease;
+        defense += defIncrease;
+        speed += spdIncrease;
+    }
 }
-//Who knows how long it has been since the Player.java file was touched.
+
