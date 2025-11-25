@@ -39,10 +39,13 @@ public class Player {
         int dmgTaken;
         System.out.print(currentHP + "/" + maxHP + "HP\n" + currentMP + "/" + maxMP + "MP\nPerform an action\n-Attack (0 MP)-");
         if (currentMP >= 4){
-            System.out.print("Heavy blow (4 MP)-");
+            System.out.print("Heavy attack (4 MP)-");
         }
         if (currentMP >= 2){
             System.out.print("Heal (2 MP)-");
+        }
+        if (currentMP >= 6){
+            System.out.print("Grand heal (6 MP)-");
         }
         System.out.print("\n");
         String action = makeMove.nextLine();
@@ -52,7 +55,7 @@ public class Player {
                 dmgTaken = 0;
             }
             System.out.println("player attacks " + enemyName + ", dealing " + dmgTaken + " damage");
-        } else if (currentMP >= 4 && action.equals("Heavy blow")){
+        } else if (currentMP >= 4 && action.equals("Heavy attack")){
             dmgTaken = (attack * 2) - enemyDef;
             if (dmgTaken < 0) {
                 dmgTaken = 0;
@@ -61,9 +64,17 @@ public class Player {
             currentMP -= 4;
         } else if (currentMP >= 2 && action.equals("Heal")){
             dmgTaken = 0;
-            System.out.println("player heals 5 HP from themselves");
-            currentHP += 5;
+            System.out.println("player heals 7 HP from themselves");
+            currentHP += 7;
             currentMP -= 2;
+            if (currentHP > maxHP){
+                currentHP = maxHP;
+            }
+        } else if (currentMP >= 6 && action.equals("Grand heal")) {
+            dmgTaken = 0;
+            System.out.println("player heals a whopping 16 HP from themselves");
+            currentHP += 16;
+            currentMP -= 6;
             if (currentHP > maxHP){
                 currentHP = maxHP;
             }
@@ -73,7 +84,7 @@ public class Player {
         return dmgTaken;
     }
     public void levelUp(int HPIncrease, int MPIncrease, int atkIncrease, int defIncrease, int spdIncrease){
-        System.out.println("player levels up\nplayer gains " + HPIncrease + " HP\nplayer gains " + MPIncrease  + " MP");
+        System.out.println("player levels up\nplayer's HP is refilled\nplayer gains " + HPIncrease + " HP\nplayer's MP is refilled\nplayer gains " + MPIncrease  + " MP");
         maxHP += HPIncrease;
         maxMP += MPIncrease;
         currentHP = maxHP;
@@ -84,5 +95,3 @@ public class Player {
         speed += spdIncrease;
     }
 }
-
-// monday commit

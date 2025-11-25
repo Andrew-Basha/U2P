@@ -46,7 +46,7 @@ public class Runner {
                 enemy1 = new Enemy("Death Spirit", 20, 3, 2, 5);
                 AI = "spiritType";
             } else if (random < .4) {
-                enemy1 = new Enemy("Dragon", 40, 3, 0, 3);
+                enemy1 = new Enemy("Dragon", 42, 3, 0, 3);
                 AI = "dragonType";
             } else if (random < .6) {
                 enemy1 = new Enemy("Creature", 24, 8, 0, 3);
@@ -55,7 +55,7 @@ public class Runner {
                 enemy1 = new Enemy("Black Slime", 16, 4, 4, 1);
                 AI = "slimeType";
             } else {
-                enemy1 = new Enemy("Wyvern", 24, 5, 1, 2);
+                enemy1 = new Enemy("Wyvern", 27, 5, 1, 2);
                 AI = "dragonType";
             }
             System.out.println(enemy1.getName() + " appeared");
@@ -80,7 +80,7 @@ public class Runner {
         if (player.getCurrentHP() > 0) {
             System.out.println(enemy1.getName() + " is defeated");
             player.levelUp(5,2,1,1,0);
-            enemy1 = new Enemy("Grand Slime",64,3,3,8);
+            enemy1 = new Enemy("Grand Slime",64,3,2,8);
             AI = "gSlimeType";
             System.out.println(enemy1.getName() + " appeared");
             while (enemy1.getCurrentHP() > 0 && player.getCurrentHP() > 0) {
@@ -103,10 +103,9 @@ public class Runner {
 
         }
         if (player.getCurrentHP() > 0) {
-            System.out.println(enemy1.getName() + " is defeated");
+            System.out.println(enemy1.getName() + " is defeated\ncongratulations, you have beaten my program I guess\nyour reward is nothing");
         } else {
             System.out.println("player is defeated");
         }
     }
 }
-// monday commit

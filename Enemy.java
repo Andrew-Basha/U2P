@@ -69,13 +69,19 @@ public class Enemy {
         int recoil;
         double pickAttack = Math.random(); //"random" element
         if (AI.equals("slimeType")) {
-            if (pickAttack < 0.8) {
+            if (pickAttack < 0.6) {
                 dmgTaken = attack - playerDef;
                 System.out.println(name + " attacks\nplayer takes " + dmgTaken + " damage");
+            } else if (pickAttack < 0.8) {
+                dmgTaken = 0;
+                defense += 3;
+                defBuff = 3;
+                defBuffTimer = 0;
+                System.out.println(name + " hardens its body");
             } else {
                 dmgTaken = (attack * 2) - playerDef;
                 recoil = attack / 2;
-                System.out.println(name + " recklessly charges into player\nplayer takes " + dmgTaken + " damage\n" + name + " crashes, taking " + recoil + " damage");
+                System.out.println(name + " recklessly charges into player\nplayer takes " + dmgTaken + " damage\n" + name + " takes " + recoil + " damage after crashing");
                 currentHP -= recoil;
             }
         } else if (AI.equals("beastType")) {
@@ -84,7 +90,7 @@ public class Enemy {
                 System.out.println(name + " attacks\nplayer takes " + dmgTaken + " damage");
             } else if (pickAttack < 0.9) {
                 dmgTaken = (int) (attack * 1.5) - playerDef;
-                System.out.println(name + " rushes in to strike\nplayer takes " + dmgTaken + " damage");
+                System.out.println(name + " carefully rushes in to strike\nplayer takes " + dmgTaken + " damage\n" + name + "doesn't crash and takes 0 damage");
             } else {
                 dmgTaken = attack - playerDef;
                 System.out.println(name + " bites player and steals their life\n" + name + " heals " + dmgTaken + " HP\nplayer takes " + dmgTaken + " damage");
@@ -95,31 +101,31 @@ public class Enemy {
             }
         } else if (AI.equals("spiritType")) {
             dmgTaken = 0;
-            if (pickAttack < 0.2) {
+            if (pickAttack < 0.4) {
                 dmgTaken = attack - playerDef;
                 System.out.println(name + " attacks\nplayer takes " + dmgTaken + " damage");
-            } else if (pickAttack < 0.4 && atkBuff == 0) {
+            } else if (pickAttack < 0.6 && atkBuff == 0) {
                 attack += 2;
                 atkBuff = 2;
-                atkBuffTimer = 3;
+                atkBuffTimer = 2;
                 System.out.println(name + " boosts its attack damage");
-            } else if (pickAttack < 0.4) {
+            } else if (pickAttack < 0.6) {
                 atkBuffTimer = 3;
                 System.out.println(name + " lengthens its attack boost");
-            } else if (pickAttack < 0.6 && defBuff == 0) {
-                defense += 2;
-                defBuff = 2;
+            } else if (pickAttack < 0.8 && defBuff == 0) {
+                defense += 1;
+                defBuff = 1;
+                defBuffTimer = 2;
+                System.out.println(name + " boosts its damage resistance");
+            } else if (pickAttack < 0.8) {
                 defBuffTimer = 3;
-                System.out.println(name + " boosts its ability to resist damage");
-            } else if (pickAttack < 0.6) {
-                defBuffTimer = 3;
-                System.out.println(name + " lengthens its resistance to damage");
-            } else if (pickAttack < 0.65) {
+                System.out.println(name + " lengthens its boost to damage resistance");
+            } else if (pickAttack < 0.85) {
                 recoil = 1;
                 dmgTaken = (attack * 3) - playerDef;
-                System.out.println(name + " attacks with tremendous power\n" + name + " takes " + recoil + " damage\nplayer takes " + dmgTaken + " damage");
+                System.out.println(name + " attacks with tremendous power\nplayer takes " + dmgTaken + " damage\n" + name + " takes " + recoil + " damage from the impact");
                 currentHP -= recoil;
-            } else if (pickAttack < 0.9) {
+            } else if (pickAttack < 0.95) {
                 System.out.println(name + " heals 3 HP from itself");
                 currentHP += 3;
                 if (currentHP > maxHP) {
@@ -146,8 +152,8 @@ public class Enemy {
                 System.out.println(name + " slashes at player\nplayer takes " + dmgTaken + " damage");
             } else {
                 dmgTaken = (attack * 3) - playerDef;
-                recoil = 1;
-                System.out.println(name + " attacks with tremendous power\n" + name + " takes " + recoil + " damage\nplayer takes " + dmgTaken + " damage");
+                recoil = attack;
+                System.out.println(name + " strikes at player with unrelenting force\nplayer takes " + dmgTaken + " damage\n" + name + " takes " + recoil + " damage from the impact");
                 currentHP -= recoil;
             }
         } else if (AI.equals("gSlimeType")) {
@@ -166,9 +172,7 @@ public class Enemy {
                 dmgTaken = 0;
             } else if (pickAttack < 0.9) {
                 dmgTaken = (attack * 2) - playerDef;
-                recoil = attack / 2;
-                System.out.println(name + " recklessly charges into player\nplayer takes " + dmgTaken + " damage\n" + name + " crashes, taking " + recoil + " damage");
-                currentHP -= recoil;
+                System.out.println(name + " carefully charges into player\nplayer takes " + dmgTaken + " damage\n" + name + " was careful not to crash, taking 0 damage");
             } else {
                 dmgTaken = 0;
                 defense += 7;
@@ -182,4 +186,3 @@ public class Enemy {
         return dmgTaken;
     }
 }
-//monday commit
