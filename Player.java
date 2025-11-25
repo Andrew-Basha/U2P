@@ -48,9 +48,15 @@ public class Player {
         String action = makeMove.nextLine();
         if (action.equals("Attack")) {
             dmgTaken = attack - enemyDef;
+            if (dmgTaken < 0) {
+                dmgTaken = 0;
+            }
             System.out.println("player attacks " + enemyName + ", dealing " + dmgTaken + " damage");
         } else if (currentMP >= 4 && action.equals("Heavy blow")){
             dmgTaken = (attack * 2) - enemyDef;
+            if (dmgTaken < 0) {
+                dmgTaken = 0;
+            }
             System.out.println("player strikes at " + enemyName + " with all their might, dealing " + dmgTaken + " damage");
             currentMP -= 4;
         } else if (currentMP >= 2 && action.equals("Heal")){
@@ -67,15 +73,16 @@ public class Player {
         return dmgTaken;
     }
     public void levelUp(int HPIncrease, int MPIncrease, int atkIncrease, int defIncrease, int spdIncrease){
-        System.out.println("player levels up\nplayer gains " + HPIncrease + " HP\nplayer gains " + MPIncrease  + " MP\n");
+        System.out.println("player levels up\nplayer gains " + HPIncrease + " HP\nplayer gains " + MPIncrease  + " MP");
         maxHP += HPIncrease;
         maxMP += MPIncrease;
         currentHP = maxHP;
         currentMP = maxMP;
-        System.out.println("player gains " + atkIncrease + " Attack, " + defIncrease + " Defense, and " + spdIncrease + "Speed");
+        System.out.println("player gains " + atkIncrease + " Attack, " + defIncrease + " Defense, and " + spdIncrease + " Speed");
         attack += atkIncrease;
         defense += defIncrease;
         speed += spdIncrease;
     }
 }
 
+// monday commit

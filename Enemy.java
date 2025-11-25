@@ -76,7 +76,7 @@ public class Enemy {
                 dmgTaken = (attack * 2) - playerDef;
                 recoil = attack / 2;
                 System.out.println(name + " recklessly charges into player\nplayer takes " + dmgTaken + " damage\n" + name + " crashes, taking " + recoil + " damage");
-                currentHP -= 1;
+                currentHP -= recoil;
             }
         } else if (AI.equals("beastType")) {
             if (pickAttack < 0.65) {
@@ -115,8 +115,10 @@ public class Enemy {
                 defBuffTimer = 3;
                 System.out.println(name + " lengthens its resistance to damage");
             } else if (pickAttack < 0.65) {
+                recoil = 1;
                 dmgTaken = (attack * 3) - playerDef;
-                System.out.println(name + " attacks with tremendous power\nplayer takes " + dmgTaken + " damage");
+                System.out.println(name + " attacks with tremendous power\n" + name + " takes " + recoil + " damage\nplayer takes " + dmgTaken + " damage");
+                currentHP -= recoil;
             } else if (pickAttack < 0.9) {
                 System.out.println(name + " heals 3 HP from itself");
                 currentHP += 3;
@@ -134,9 +136,9 @@ public class Enemy {
                 atkBuffTimer = 1;
                 speed += 3;
                 spdBuff = 3;
-                spdBuffTimer = 1;
+                spdBuffTimer = 0;
                 System.out.println(name + " prepares to attack");
-            } else if (pickAttack < 0.7 ) {
+            } else if (pickAttack < 0.7) {
                 dmgTaken = attack - playerDef;
                 System.out.println(name + " attacks\nplayer takes " + dmgTaken + " damage");
             } else if (pickAttack < 0.95) {
@@ -144,7 +146,35 @@ public class Enemy {
                 System.out.println(name + " slashes at player\nplayer takes " + dmgTaken + " damage");
             } else {
                 dmgTaken = (attack * 3) - playerDef;
-                System.out.println(name + " attacks with tremendous power\nplayer takes " + dmgTaken + " damage");
+                recoil = 1;
+                System.out.println(name + " attacks with tremendous power\n" + name + " takes " + recoil + " damage\nplayer takes " + dmgTaken + " damage");
+                currentHP -= recoil;
+            }
+        } else if (AI.equals("gSlimeType")) {
+            if (pickAttack < 0.4) {
+                dmgTaken = attack - playerDef;
+                System.out.println(name + " attacks\nplayer takes " + dmgTaken + " damage");
+            } else if (pickAttack < 0.7 && atkBuff == 0) {
+                atkBuff = attack;
+                attack *= 2;
+                atkBuffTimer = 1;
+                currentHP += 2;
+                if (currentHP > maxHP) {
+                    currentHP = maxHP;
+                }
+                System.out.println(name + " restores 2 HP and prepares a powerful attack");
+                dmgTaken = 0;
+            } else if (pickAttack < 0.9) {
+                dmgTaken = (attack * 2) - playerDef;
+                recoil = attack / 2;
+                System.out.println(name + " recklessly charges into player\nplayer takes " + dmgTaken + " damage\n" + name + " crashes, taking " + recoil + " damage");
+                currentHP -= recoil;
+            } else {
+                dmgTaken = 0;
+                defense += 7;
+                defBuff = 7;
+                defBuffTimer = 0;
+                System.out.println(name + " becomes rock solid");
             }
         } else {
             dmgTaken = 0;
@@ -152,3 +182,4 @@ public class Enemy {
         return dmgTaken;
     }
 }
+//monday commit

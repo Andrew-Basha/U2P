@@ -80,7 +80,8 @@ public class Runner {
         if (player.getCurrentHP() > 0) {
             System.out.println(enemy1.getName() + " is defeated");
             player.levelUp(5,2,1,1,0);
-            enemy1 = new Enemy("a",1,1,1,1);
+            enemy1 = new Enemy("Grand Slime",64,3,3,8);
+            AI = "gSlimeType";
             System.out.println(enemy1.getName() + " appeared");
             while (enemy1.getCurrentHP() > 0 && player.getCurrentHP() > 0) {
                 if (enemy1.getSpeed() > player.getSpeed()) {
@@ -99,11 +100,13 @@ public class Runner {
                     }
                 }
             }
-            if (player.getCurrentHP() > 0) {
-                System.out.println(enemy1.getName() + " is defeated");
-            } else {
-                System.out.println("player is defeated");
-            }
+
+        }
+        if (player.getCurrentHP() > 0) {
+            System.out.println(enemy1.getName() + " is defeated");
+        } else {
+            System.out.println("player is defeated");
         }
     }
 }
+// monday commit
